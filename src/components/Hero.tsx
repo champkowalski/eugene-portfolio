@@ -6,10 +6,14 @@ const Hero = () => {
     <section id="home" className="pt-24 pb-12 bg-gradient-to-br from-blue-50 to-white">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center justify-between">
-          <div className="md:w-1/2 mb-8 md:mb-0">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Eugene Amoo-Sargon</h1>
-            <p className="text-xl text-gray-600 mb-6">
-              Transforming HR data into actionable insights for better workplace decisions
+          <div className="md:w-2/3 mb-8 md:mb-0">
+            <h1 className="text-4xl md:text-3xl font-bold text-gray-800 mb-4">Eugene Amoo-Sargon</h1>
+            <p className="text-md text-gray-600 mb-6">
+              Analytical and detail-oriented Information Systems expert / Data Analyst with experience in human
+              resources, bioinformatics & marketing. I specialize in creating interactive dashboards, building data
+              models, information system implementations and management. I am skilled in gathering and analyzing data to
+              provide actionable insights using Power BI & MS Excel to streamline business operations, and support
+              decision-making.
             </p>
             <div className="flex space-x-4">
               <a
@@ -27,11 +31,11 @@ const Hero = () => {
               </a>
             </div>
           </div>
-          <div className="md:w-1/2">
+          <div className="md:w-1/3">
             <img
-              src="https://images.unsplash.com/photo-1551836022-4c4c79ecde51?auto=format&fit=crop&w=800&q=80"
+              src="/eugene-1.jpeg"
               alt="HR Analytics Dashboard"
-              className="rounded-lg shadow-lg"
+              className="rounded-lg object-cover ml-8 h-64 shadow-lg"
             />
           </div>
         </div>
