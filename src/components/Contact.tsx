@@ -6,9 +6,9 @@ const Contact = () => {
   // const API_KEY = import.meta.env.RESEND_API_KEY;
 
   const [formData, setFormData] = useState({
-    name: "Kowalski Dev",
-    email: "douglasbiomed3@gmail.com",
-    message: "I want to learn how to use HR",
+    name: "",
+    email: "",
+    message: "",
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
