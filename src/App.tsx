@@ -7,10 +7,12 @@ import AssignmentsPortfolio from "./components/Assignments/AssignmentsPortfolio"
 import Skills from "./components/Skills";
 import Education from "./components/Education";
 import Contact from "./components/Contact";
-
+import { Toaster } from "sonner";
+import MainHero from "./components/MainHero";
 function App() {
   return (
     <div className="min-h-screen bg-white">
+      <Toaster />
       <Header />
       <main>
         <Hero />

@@ -1,17 +1,28 @@
 import React, { useState } from "react";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
-
+import { toast } from "sonner";
+import { getHtmlMessage } from "../utils";
 const Contact = () => {
+  // const API_KEY = import.meta.env.RESEND_API_KEY;
+
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
+    name: "Kowalski Dev",
+    email: "douglasbiomed3@gmail.com",
+    message: "I want to learn how to use HR",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     // Handle form submission here
     console.log("Form submitted:", formData);
+
+    toast.success("Email has been sent", { position: "top-center" });
+
+    setFormData({
+      name: "",
+      email: "",
+      message: "",
+    });
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
