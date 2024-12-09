@@ -17,7 +17,7 @@ function App() {
       <main>
         <Hero />
         <Projects />
-        <ProjectGallery />
+        {/* <ProjectGallery /> */}
         <AssignmentGallery />
         <AssignmentsPortfolio />
         <Skills />
