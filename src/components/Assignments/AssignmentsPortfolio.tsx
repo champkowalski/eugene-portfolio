@@ -1,7 +1,14 @@
 import React from "react";
 import AssignmentCard from "./AssignmentCard";
+import { useResources } from "../../hooks/resources";
+import { metaUrl } from "../../lib";
+import { Loader } from "lucide-react";
 
 const AssignmentsPortfolio = () => {
+  const { data, error, isLoading } = useResources({
+    queryKey: ["assignments_porfolio", metaUrl.assignment_portfolio],
+    url: metaUrl.assignment_portfolio,
+  });
   const assignments = [
     {
       title: "Developing Business Systems",
@@ -44,10 +51,13 @@ const AssignmentsPortfolio = () => {
     <section className="py-16 bg-white" id="assignments">
       <div className="container mx-auto px-6">
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">Assignments Portfolio</h2>
+        {isLoading && (
+          <div className="flex justify-center">
+            <Loader className="animate-spin" />
+          </div>
+        )}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {assignments.map((assignment, index) => (
-            <AssignmentCard key={index} {...assignment} />
-          ))}
+          {data && data.map((assignment: any) => <AssignmentCard key={assignment.Id} {...assignment} />)}
         </div>
       </div>
     </section>

@@ -1,5 +1,13 @@
 import React from "react";
 import { GraduationCap, Award, BookOpen } from "lucide-react";
+import { useResources } from "../hooks/resources";
+import { metaUrl } from "../lib";
+
+type CertProps = {
+  Id: string | number;
+  title: string;
+  date: string;
+};
 
 const Education = () => {
   const education = [
@@ -60,7 +68,14 @@ const Education = () => {
       icon: <Award className="h-6 w-6 text-blue-600" />,
     },
   ];
-
+  const { data, error, isLoading } = useResources({
+    queryKey: ["education", metaUrl.education_list],
+    url: metaUrl.education_list,
+  });
+  const query = useResources({
+    queryKey: ["certifications", metaUrl.certification_list],
+    url: metaUrl.certification_list,
+  });
   return (
     <section id="education" className="py-16 bg-gray-50">
       <div className="container mx-auto px-6">
@@ -71,17 +86,17 @@ const Education = () => {
             <h3 className="text-xl font-semibold mb-6">Education</h3>
             <div className="space-y-6">
               <div className="grid grid-cols-2 gap-5">
-                {education.map((item, index) => (
-                  <div key={index} className="bg-white p-6 rounded-lg shadow-md">
-                    <div className="flex items-center space-x-3 mb-3">
-                      {item.icon}
-                      <h4 className="font-semibold text-lg">{item.degree}</h4>
+                {data &&
+                  data.map((item, index) => (
+                    <div key={index} className="bg-white p-6 rounded-lg shadow-md">
+                      <div className="flex items-center space-x-3 mb-3">
+                        <Award className="h-6 w-6 text-blue-600" />
+                        <h4 className="font-semibold text-lg">{item.school}</h4>
+                      </div>
+                      <p className="text-gray-600">{item.program}</p>
+                      <p className="text-gray-500 text-sm">{item.year}</p>
                     </div>
-                    <p className="text-gray-600">{item.institution}</p>
-                    <p className="text-gray-500 text-sm">{item.year}</p>
-                    <p className="text-gray-600 mt-2">{item.description}</p>
-                  </div>
-                ))}
+                  ))}
               </div>
             </div>
           </div>
@@ -90,15 +105,16 @@ const Education = () => {
             <h3 className="text-xl font-semibold mb-6">Certifications</h3>
             <div className="space-y-6">
               <div className="grid grid-cols-2 gap-5">
-                {certifications.map((cert, index) => (
-                  <div key={index} className="bg-white p-6 rounded-lg shadow-md">
-                    <div className="flex items-center space-x-3 mb-3">
-                      {cert.icon}
-                      <h4 className="font-semibold text-lg">{cert.name}</h4>
+                {query.data &&
+                  query.data.map((cert: CertProps) => (
+                    <div key={cert.Id} className="bg-white p-6 rounded-lg shadow-md">
+                      <div className="flex items-center space-x-3 mb-3">
+                        <Award className="h-6 w-6 text-blue-600" />
+                        <h4 className="font-semibold text-lg">{cert.title}</h4>
+                      </div>
+                      <p className="text-gray-500 ml-7 text-sm">{cert.date}</p>
                     </div>
-                    <p className="text-gray-500 ml-7 text-sm">{cert.year}</p>
-                  </div>
-                ))}
+                  ))}
               </div>
             </div>
           </div>

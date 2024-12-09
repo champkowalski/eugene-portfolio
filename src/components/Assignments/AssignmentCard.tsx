@@ -1,23 +1,16 @@
-import React from 'react';
-import { Calendar, FileText, Award } from 'lucide-react';
+import React from "react";
+import { Calendar, FileText, Award } from "lucide-react";
 
 interface AssignmentCardProps {
   title: string;
   company: string;
-  date: string;
+  duration: string;
   description: string;
   outcome: string;
   grade?: string;
 }
 
-const AssignmentCard: React.FC<AssignmentCardProps> = ({
-  title,
-  company,
-  date,
-  description,
-  outcome,
-  grade
-}) => {
+const AssignmentCard: React.FC<AssignmentCardProps> = ({ title, company, duration, description, outcome, grade }) => {
   return (
     <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow p-6">
       <div className="flex justify-between items-start mb-4">
@@ -32,10 +25,10 @@ const AssignmentCard: React.FC<AssignmentCardProps> = ({
           </div>
         )}
       </div>
-      
+
       <div className="flex items-center space-x-2 text-gray-500 mb-4">
         <Calendar className="h-4 w-4" />
-        <span className="text-sm">{date}</span>
+        <span className="text-sm">{duration}</span>
       </div>
 
       <div className="space-y-3">
@@ -50,6 +43,6 @@ const AssignmentCard: React.FC<AssignmentCardProps> = ({
       </div>
     </div>
   );
-}
+};
 
 export default AssignmentCard;

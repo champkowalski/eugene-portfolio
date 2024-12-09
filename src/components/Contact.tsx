@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { toast } from "sonner";
 import { getHtmlMessage } from "../utils";
+import { useResources } from "../hooks/resources";
+import { metaUrl } from "../lib";
 const Contact = () => {
   // const API_KEY = import.meta.env.RESEND_API_KEY;
 
@@ -32,29 +34,36 @@ const Contact = () => {
     });
   };
 
+  const { data, isLoading, error } = useResources({
+    queryKey: ["contactInfo", metaUrl.contactInfo],
+    url: metaUrl.contactInfo,
+  });
+
   return (
     <section id="contact" className="py-16 bg-white">
       <div className="container mx-auto px-6">
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">Get in Touch</h2>
 
         <div className="grid md:grid-cols-2 gap-12">
-          <div>
-            <h3 className="text-xl font-semibold mb-6">Contact Information</h3>
-            <div className="space-y-4">
-              <div className="flex items-center space-x-3">
-                <Mail className="h-5 w-5 text-blue-600" />
-                <span className="text-gray-600">230430077@aston.ac.uk</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Phone className="h-5 w-5 text-blue-600" />
-                <span className="text-gray-600">+44 (735) 817-459</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <MapPin className="h-5 w-5 text-blue-600" />
-                <span className="text-gray-600">Birmingham, United Kingdom</span>
+          {data && data.length > 0 && (
+            <div>
+              <h3 className="text-xl font-semibold mb-6">Contact Information</h3>
+              <div className="space-y-4">
+                <div className="flex items-center space-x-3">
+                  <Mail className="h-5 w-5 text-blue-600" />
+                  <span className="text-gray-600">{data[0].title}</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Phone className="h-5 w-5 text-blue-600" />
+                  <span className="text-gray-600">{data[0].phone_number}</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <MapPin className="h-5 w-5 text-blue-600" />
+                  <span className="text-gray-600">{data[0].location}</span>
+                </div>
               </div>
             </div>
-          </div>
+          )}
 
           <div>
             <form onSubmit={handleSubmit} className="space-y-6">

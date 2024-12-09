@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Projects from "./components/Projects";
@@ -8,7 +8,7 @@ import Skills from "./components/Skills";
 import Education from "./components/Education";
 import Contact from "./components/Contact";
 import { Toaster } from "sonner";
-import MainHero from "./components/MainHero";
+import AssignmentGallery from "./components/Gallery/AssignmentGallery";
 function App() {
   return (
     <div className="min-h-screen bg-white">
@@ -18,6 +18,7 @@ function App() {
         <Hero />
         <Projects />
         <ProjectGallery />
+        <AssignmentGallery />
         <AssignmentsPortfolio />
         <Skills />
         <Education />
